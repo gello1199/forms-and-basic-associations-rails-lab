@@ -13,13 +13,17 @@ class Song < ActiveRecord::Base
     self.artist.name if self.artist
   end
 
-  def genre_name=(name)
-    self.genre = Genre.find_or_create_by(name: name)
-    self.save
+  def note_content=(contents)
+    contents.each do |c|
+      if !c.blank?
+         self.notes.build(content: c)
+      end
+    end
+    
   end
 
-  def genre_name
-    self.genre.name if self.genre
+  def note_content
+
   end
 
 end
